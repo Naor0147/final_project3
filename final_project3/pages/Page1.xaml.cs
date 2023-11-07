@@ -74,6 +74,7 @@ namespace final_project3.pages
             _pos.Text = x;
 
             obstacles.angle += 0.05;
+            obstacles.move(1,1);
             obstacles.convert_points_realtive();
             obstacles.DrawMultipleLines();
         }

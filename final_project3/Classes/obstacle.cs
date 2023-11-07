@@ -18,9 +18,12 @@ namespace final_project3.Classes
         private double height;
         public double angle;
 
-        public Point[] points;
+        public Point[] imaginary_points;
         public Point[] relative_Points;
         public List<Line> lines;
+
+        //if you want change the varibles , or how the rect looks , you need to make sure the the points[] has been updated 
+
 
         public obstacle(Canvas canvas, double x, double y, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, x, y, vx, vy, shape_Kind)
         {
@@ -28,24 +31,27 @@ namespace final_project3.Classes
             this.height = height;
             this.angle = alpha+90;
 
-            this.points = DrawRectOnAngle();//draw the rectangle 
+            this.imaginary_points = Convert_Stats_To_Points();//draw the rectangle 
 
             
             convert_points_realtive();
             lines = new List<Line>();
             DrawMultipleLines();
         }
-       
-        public Point[] DrawRectOnAngle()
+
+        //take the varibles in the class {x,y,width,height,angle} and convert it to useable point on the imaginary canvas
+        public Point[] Convert_Stats_To_Points()
         {
             return new Point[]
                 {
                 new Point((int)_x,(int) _y),//(l,k) P1
                 new Point((int)(_x - height*Math.Sin(angle)),(int)(_y+height*Math.Cos(angle))),//(l-hsin(a),k+hcos(a)) P3
-                new Point((int)(_x + width*Math.Cos(angle)-height*Math.Sin(angle)), (int)(_y + width*Math.Sin(angle)+height*Math.Cos(angle))),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
+                new Point((int)(_x + width*Math.Cos(angle)-height*Math.Sin(angle)),(int)(_y + width*Math.Sin(angle)+height*Math.Cos(angle))),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
                 new Point((int)(_x + width*Math.Cos(angle)),(int)(_y + width*Math.Sin(angle)) ),//l+wcos(a) P2
                 };
         }
+
+
 
         //
         public void DrawMultipleLines()
@@ -96,20 +102,18 @@ namespace final_project3.Classes
 
         public void move(int dx,int dy)
         {
-            for (int i = 0; i < points.Length; i++)
-            {
-                points[i].X += dx;
-                points[i].Y += dy;
-            }
+            _x += dx;
+            _y += dy;
+            convert_points_realtive();
         }
 
         public void convert_points_realtive()
         {
-            this.points = DrawRectOnAngle();//check , i need to update every time there is change 
-            relative_Points = new Point[points.Length];
-            for (int i = 0; i < points.Length; i++)
+            this.imaginary_points = Convert_Stats_To_Points();//check , i need to update every time there is change 
+            relative_Points = new Point[imaginary_points.Length];
+            for (int i = 0; i < imaginary_points.Length; i++)
             {
-                relative_Points[i] = new Point((int)Convert_To_Real(points[i].X), (int)Convert_To_Real(points[i].Y));
+                relative_Points[i] = new Point((int)Convert_To_Real(imaginary_points[i].X), (int)Convert_To_Real(imaginary_points[i].Y));
             }
         }
 
