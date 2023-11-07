@@ -98,7 +98,8 @@ namespace final_project3.Classes
         {
             for (int i = 0; i < points.Length; i++)
             {
-
+                points[i].X += dx;
+                points[i].Y += dy;
             }
         }
 
