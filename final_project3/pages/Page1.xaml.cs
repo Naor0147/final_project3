@@ -1,6 +1,7 @@
 ﻿using final_project3.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -53,7 +54,12 @@ namespace final_project3.pages
             obstacles.DrawMultipleLines();
             Start_Timer();
 
-         
+            Line_f line_F = new Line_f(new Point(100,100),new Point(400,400) , canv);
+            Line_f line_F2 = new Line_f(new Point(200, 200), new Point(295, 295), canv);
+            Line_f line_F3 = new Line_f(new Point(150, 150), new Point(500, 500), canv);
+            // Debug.WriteLine(line_F.checkCol(line_F2));
+
+          
         }
 
         private void Start_Timer()
@@ -94,7 +100,7 @@ namespace final_project3.pages
         {
             var window = ApplicationView.GetForCurrentView();
 
-            double ratio = Settings_class.imaginary_Screen_Width / Settings_class.Imaginary_Screen_Height;
+            double ratio = Settings_class.IMAGINARY_SCREEN_WIDTH / Settings_class.IMAGINARY_SCREEN_HEIGHT;
 
             //
             //_ratio.Text = window.VisibleBounds.Width + " *" + window.VisibleBounds.Height + " ratio: " + window.VisibleBounds.Width / window.VisibleBounds.Height;

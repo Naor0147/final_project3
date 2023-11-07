@@ -47,7 +47,8 @@ namespace final_project3.Classes
         }
 
 
-        public double Convert_To_Real(double value) => value * (_canvas.ActualHeight / Settings_class.Imaginary_Screen_Height) ;
+        public double Convert_To_Real(double value) => value * (_canvas.ActualHeight / Settings_class.IMAGINARY_SCREEN_HEIGHT) ;
+
         //takes number on the imagenary canvas and convert to the real canvas
         public void UpdateRealPos()
         {
