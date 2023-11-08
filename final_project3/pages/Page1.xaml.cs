@@ -36,6 +36,7 @@ namespace final_project3.pages
         Ball _ball;
         obstacle obstacles;
         DispatcherTimer _timer;
+        Line_f[] arr;
         public Page1()
         {
             this.InitializeComponent();
@@ -54,12 +55,15 @@ namespace final_project3.pages
             obstacles.DrawMultipleLines();
             Start_Timer();
 
-            Line_f line_F = new Line_f(new Point(100,100),new Point(400,400) , canv);
-            Line_f line_F2 = new Line_f(new Point(200, 200), new Point(295, 295), canv);
-            Line_f line_F3 = new Line_f(new Point(150, 150), new Point(500, 500), canv);
+            arr = new Line_f[] { new Line_f(new Point(100, 100), new Point(400, 400), canv),
+            new Line_f(new Point(100, 100), new Point(800, 800), canv),
+            new Line_f(new Point(450, 200), new Point(195, 295), canv),new Line_f(new Point(650, 200), new Point(195, 295), canv)
+            };
+           
+
             // Debug.WriteLine(line_F.checkCol(line_F2));
 
-          
+
         }
 
         private void Start_Timer()

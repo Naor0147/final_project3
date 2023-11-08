@@ -31,7 +31,7 @@ namespace final_project3.Classes
         //Imaginary Line
         Line _line_imaginary;
 
-        public Line_f(Point p1, Point p2 , Canvas _canv)
+        public Line_f(Point p1, Point p2 , Canvas _canv )
         {
             //get two points of the line
             this.P1 = p1;
@@ -55,7 +55,7 @@ namespace final_project3.Classes
             function=convert_line_to_func();
 
             //Imaginary line 
-            CreateLineOnScreen();
+            _line_imaginary =CreateLineOnScreen();
 
         }
 
@@ -75,7 +75,7 @@ namespace final_project3.Classes
             return function;
         }
 
-        private Line CreateLineOnScreen()
+        public Line CreateLineOnScreen()
         {
             Line line = new Line
             {
