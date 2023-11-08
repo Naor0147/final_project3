@@ -10,7 +10,7 @@ namespace final_project3.Classes
         // real canvas is the regular canvas 
         // imaginary canvas is my canvas that can be any size i want 
         
-        public Canvas _canvas; //canvas to draw on
+        public Canvas _canvas; //canvas to Draw_line on
 
         public double _x, _y;
         /* posision on canvas , maybe i will try to make the x and y realtive to the canvas x y 

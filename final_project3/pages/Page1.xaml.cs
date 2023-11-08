@@ -55,12 +55,7 @@ namespace final_project3.pages
             obstacles.DrawMultipleLines();
             Start_Timer();
 
-            arr = new Line_f[] { new Line_f(new Point(100, 100), new Point(400, 400), canv),
-            new Line_f(new Point(100, 100), new Point(800, 800), canv),
-            new Line_f(new Point(450, 200), new Point(195, 295), canv),new Line_f(new Point(650, 200), new Point(195, 295), canv)
-            };
-           
-
+            
             // Debug.WriteLine(line_F.checkCol(line_F2));
 
 
@@ -98,6 +93,13 @@ namespace final_project3.pages
 
             obstacles.convert_points_realtive();
             obstacles.DrawMultipleLines();
+            if (arr != null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i].UpdateLine();
+                }
+            }
         }
 
         public static void Change_To_Right_Screen_Ratio()
@@ -115,11 +117,28 @@ namespace final_project3.pages
                 window.TryResizeView(new Windows.Foundation.Size((int)newWidth, (int)window.VisibleBounds.Height));
             }
         }
-       
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (canv != null)
+            {
+                //i need to add a list with all of the objects in the screen and every time the screen updated there x will change 
 
 
+                //there is problem with the canvas it always showes as null
+                // need to change so the point will not need canv every time ;
+               // Line_f line1 = new Line_f(new Point_f(200, 100),new Point_f(400, 400),canv , Colors.Red);
+
+                arr = new Line_f[] { new Line_f(new Point_f(200, 100), new Point_f(400, 400),canv),
+            new Line_f(new Point_f(100, 100), new Point_f(300, 800), canv),
+            new Line_f(new Point_f(450, 200), new Point_f(195, 295), canv),
+                new Line_f(new Point_f(650, 200), new Point_f(195, 295), canv)
+            };
 
 
+            }
 
+
+        }
     }
 }

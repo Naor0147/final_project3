@@ -31,7 +31,7 @@ namespace final_project3.Classes
             this.height = height;
             this.angle = alpha+90;
 
-            this.imaginary_points = Convert_Stats_To_Points();//draw the rectangle 
+            this.imaginary_points = Convert_Stats_To_Points();//Draw_line the rectangle 
 
             
             convert_points_realtive();
@@ -59,16 +59,16 @@ namespace final_project3.Classes
             if (relative_Points == null) return;
 
          
-            // remove the old lines , and draw the new one , so there will not be overlap , when i resize it is necesery 
+            // remove the old lines , and Draw_line the new one , so there will not be overlap , when i resize it is necesery 
             RemoveIfExsits();
             lines= new List<Line>(); 
 
-            //draw the lines on screen
+            //Draw_line the lines on screen
             for (int i = 0; i < relative_Points.Length - 1; i++)
             {
-                draw(i,i+1);
+                Draw_line(i,i+1);
             }
-            draw(relative_Points.Length - 1, 0);
+            Draw_line(relative_Points.Length - 1, 0);
         }
         
         public void RemoveIfExsits()//remove the old obstacles so when you resize the screen you don't have multiple lines that are the same
@@ -84,7 +84,7 @@ namespace final_project3.Classes
        
 
 
-        private void draw(int i,int j)
+        private void Draw_line(int i,int j)
         {
             Line line = new Line
             {
