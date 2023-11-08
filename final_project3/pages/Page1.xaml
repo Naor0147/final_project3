@@ -14,6 +14,6 @@
         <TextBlock FontSize="60" x:Name="_ratio"> fff</TextBlock>
         <TextBlock FontSize="20" x:Name="_pos" HorizontalAlignment="Left" Canvas.Left="863" VerticalAlignment="Center"> pos</TextBlock>
 
-        <Polygon />
+        
     </Canvas>
 </Page>

@@ -43,16 +43,18 @@ namespace final_project3.pages
             ball = new Ball(canv, 800, 400, 4, -10, 100, Colors.Beige);
 
             
-            Point[] points = new Point[]
+           Point[] points = new Point[]
                 {
                 new Point(400, 400),
                 new Point(400, 900),
                 new Point(1200, 900),
                 new Point(1200, 400),
                 };
+
+           //apper on screen just need to add list of all the objects so i can update their size  
            obstacles = new obstacle(canv,x: 400,y: 300, width: 400,height: 400, alpha: 30);
 
-            obstacles.DrawMultipleLines();
+            //obstacles.DrawMultipleLines();
             Start_Timer();
 
             
@@ -71,28 +73,33 @@ namespace final_project3.pages
 
         private void _timer_Tick(object sender, object e)
         {
-            if (ball == null) { return; }
-            ball.move();
+            if (ball != null) {
+                ball.move();
+                string x = "imag (" + ball._x + "," + ball._y + ")";
+                _pos.Text = x;
+            }
+            
            
             
-            string x = "imag (" + ball._x + "," + ball._y + ")" ;
-            _pos.Text = x;
+            obstacles.Update_Obstacle_Size_f();
 
+            /*
             obstacles.angle += 0.05;
             obstacles.move(1,1);
             obstacles.convert_points_realtive();
-            obstacles.DrawMultipleLines();
+            obstacles.DrawMultipleLines();*/
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            //change the screen to the right to the right screen size 
             Change_To_Right_Screen_Ratio();
-            //Change_To_Right_Screen_Ratio();
+            
 
             if (ball == null) { return; }
 
-            obstacles.convert_points_realtive();
-            obstacles.DrawMultipleLines();
+           /* obstacles.convert_points_realtive();
+            obstacles.DrawMultipleLines();*/
             if (arr != null)
             {
                 for (int i = 0; i < arr.Length; i++)

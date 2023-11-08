@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
@@ -20,7 +21,14 @@ namespace final_project3.Classes
 
         public Point[] imaginary_points;
         public Point[] relative_Points;
+
+
+        public Point_f[] points_f;
+        public Point_f[] relative_Points_f;
+
         public List<Line> lines;
+        public List<Line_f> lines_f;
+
 
         //if you want change the varibles , or how the rect looks , you need to make sure the the points[] has been updated 
 
@@ -31,12 +39,17 @@ namespace final_project3.Classes
             this.height = height;
             this.angle = alpha+90;
 
+            /*
             this.imaginary_points = Convert_Stats_To_Points();//Draw_line the rectangle 
 
-            
             convert_points_realtive();
             lines = new List<Line>();
             DrawMultipleLines();
+            */
+
+                        this.points_f = Convert_Stats_To_Points_f();
+            DrawMultipleLines_linef();
+
         }
 
         //take the varibles in the class {x,y,width,height,angle} and convert it to useable point on the imaginary canvas
@@ -51,6 +64,38 @@ namespace final_project3.Classes
                 };
         }
 
+        public Point_f[] Convert_Stats_To_Points_f()
+        {
+            return new Point_f[]
+                {
+                new Point_f(_x, _y),//(l,k) P1
+                new Point_f((_x - height*Math.Sin(angle)),(_y+height*Math.Cos(angle))),//(l-hsin(a),k+hcos(a)) P3
+                new Point_f((_x + width*Math.Cos(angle)-height*Math.Sin(angle)),(_y + width*Math.Sin(angle)+height*Math.Cos(angle))),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
+                new Point_f((_x + width*Math.Cos(angle)),(_y + width*Math.Sin(angle)) ),//l+wcos(a) P2
+                };
+        }
+
+
+
+        public void DrawMultipleLines_linef()
+        {
+            if (points_f == null) return;
+
+            lines_f = new List<Line_f>();
+            for (int i = 0; i < points_f.Length-1; i++)
+            {
+                lines_f.Add(new Line_f(points_f[i], points_f[i+1], _canvas));
+            }
+            lines_f.Add(new Line_f(points_f[points_f.Length-1], points_f[0], _canvas));
+
+        }
+        public void Update_Obstacle_Size_f()
+        {
+            for (int i = 0; i < lines_f.Count; i++)
+            {
+                lines_f[i].UpdateLine();
+            }
+        }
 
 
         //
@@ -81,7 +126,18 @@ namespace final_project3.Classes
             
         }
 
-       
+
+        public void RemoveIfExsits_f()//remove the old obstacles so when you resize the screen you don't have multiple lines that are the same
+        {
+            if (lines == null) return;
+            for (int i = 0; i < lines.Count; i++)
+            {
+                _canvas.Children.Remove(lines[i]);
+            }
+
+        }
+
+
 
 
         private void Draw_line(int i,int j)
@@ -98,6 +154,9 @@ namespace final_project3.Classes
             lines.Add(line);
             _canvas.Children.Add(line);
         }
+
+       
+
 
 
         public void move(int dx,int dy)
