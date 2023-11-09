@@ -23,7 +23,7 @@ namespace final_project3.Classes
         public const double IMAGINARY_SCREEN_HEIGHT = 1000;
         public const double IMAGINARY_SCREEN_WIDTH = 1920;
 
-
+        public static double Window_VisibleBounds_Height = 1000;
         /*
          **What the diffreance between I 
          
@@ -52,12 +52,12 @@ namespace final_project3.Classes
 
         public static double Convert_To_Real(double value)
         {
-            var window = ApplicationView.GetForCurrentView();
+            /*var window = ApplicationView.GetForCurrentView();
 
-           
-            Debug.WriteLine($"  window visible bounds {window.VisibleBounds.Height} ");
 
-            return value * (window.VisibleBounds.Height / IMAGINARY_SCREEN_HEIGHT);
+            Debug.WriteLine($"  window visible bounds {window.VisibleBounds.Height} ");*/
+
+            return value * (Window_VisibleBounds_Height / IMAGINARY_SCREEN_HEIGHT);
         }
 
 
