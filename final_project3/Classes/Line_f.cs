@@ -73,7 +73,7 @@ namespace final_project3.Classes
             b = y1 - (m * x1);
 
             //convert to function 
-            function = convert_line_to_func();
+            function = Convert_line_to_func();
 
             //Imaginary line 
             CreateLineOnScreen();
@@ -81,7 +81,7 @@ namespace final_project3.Classes
 
        
 
-        private string convert_line_to_func()
+        private string Convert_line_to_func()
         {
 
             //convert to function 
@@ -114,7 +114,18 @@ namespace final_project3.Classes
             
         }
 
-        public void UpdateLine()
+       
+        public void Move_Line(double dx ,double dy)
+        {
+            P1.Move_Point(dx, dy);
+            P2.Move_Point(dx, dy);
+            Update_Line_Real_Pos();
+        }
+
+
+
+
+        public void Update_Line_Real_Pos()
         {
             P1.Update_Points();
             P2.Update_Points();
@@ -125,53 +136,61 @@ namespace final_project3.Classes
         }
 
 
-        public double getlineY(double x_temp) {
+        //get y value of the line in the x value
+        public double Get_Y_Value_On_X(double x_temp) {
             return m * x_temp + b;
         }
 
-        public bool isBetween(double v1, double middle, double v2) {
-
-            if (v1 > v2)
-            {
-                double temp = v2;
-                v2 = v1;
-                v1 = temp;
-            }
-            return v1 < middle && middle < v2;
-        }
+        
 
         public bool CheckCol(Line_f line)
         {
+            
             if (this.m == line.m)
+            {
+                if (this.b==line.b)
+                {
+                    return true;//the same line
+                }
                 return false;
+            }
+                
 
             double x = (line.b - b) / (m - line.m);
-            double y = getlineY(x);
-            Point col = new Point((int)x, (int)y);
+            double y = Get_Y_Value_On_X(x);
+            Point_f col = new Point_f(x, y);
 
 
-            bool condtion1 = isBetween(x1, x, x2);
-            bool condtion2 = isBetween(line.x1, x, line.x2);
-            bool condtion3 = isBetween(y1, y, y2);
-            bool condtion4 = isBetween(line.y1, y, line.y2);
+            bool condtion1 = Settings_class.isBetween(x1, x, x2);
+            bool condtion2 = Settings_class.isBetween(line.x1, x, line.x2);
 
-            return (condtion1 && condtion2 && condtion3 && condtion4);
+            /*pretty sure i dont need this check 
+             * cause i allready cheked the x of the line so i dont need to check the y 
+             * 
+             bool condtion3 = Settings_class.isBetween(y1, y, y2);
+            bool condtion4 = Settings_class.isBetween(line.y1, y, line.y2);
+            return (condtion1 && condtion2 && condtion3 && condtion4);*/
+
+            return (condtion1 && condtion2 );
+
+
         }
 
 
 
-
+        
         public void Change_Line_Color(Color color)
         {
             this._line_color = color;
             Update_color();
         }
+
+        //if the user doesnt input color it wiil chose a random color 
         public void Change_Line_Color()
         {
             this._line_color = GenerateRandomColor();
             Update_color();
         }
-
 
         private void Update_color()
         {
@@ -180,9 +199,6 @@ namespace final_project3.Classes
                 _line_imaginary.Stroke = new SolidColorBrush(_line_color);
             }
         }
-
-
-
 
         //create a random color 
         public Color GenerateRandomColor()

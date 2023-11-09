@@ -58,7 +58,7 @@ namespace final_project3.Classes
        
 
 
-        public virtual void move() { }
+        public virtual void Move_Distance(double dx, double dy) { }
 
 
 

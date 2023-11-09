@@ -99,7 +99,7 @@ namespace final_project3.Classes
             _ellipse.Height = _real_size;
         }
 
-        public override void move()
+        public void move()
         {
             //reg
             //acc

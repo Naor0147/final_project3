@@ -19,14 +19,8 @@ namespace final_project3.Classes
         private double height;
         public double angle;
 
-        public Point[] imaginary_points;
-        public Point[] relative_Points;
-
-
         public Point_f[] points_f;
-        public Point_f[] relative_Points_f;
-
-        public List<Line> lines;
+       
         public List<Line_f> lines_f;
 
 
@@ -39,30 +33,15 @@ namespace final_project3.Classes
             this.height = height;
             this.angle = alpha+90;
 
-            /*
-            this.imaginary_points = Convert_Stats_To_Points();//Draw_line the rectangle 
+          
 
-            convert_points_realtive();
-            lines = new List<Line>();
-            DrawMultipleLines();
-            */
-
-                        this.points_f = Convert_Stats_To_Points_f();
+            this.points_f = Convert_Stats_To_Points_f();
             DrawMultipleLines_linef();
 
         }
 
         //take the varibles in the class {x,y,width,height,angle} and convert it to useable point on the imaginary canvas
-        public Point[] Convert_Stats_To_Points()
-        {
-            return new Point[]
-                {
-                new Point((int)_x,(int) _y),//(l,k) P1
-                new Point((int)(_x - height*Math.Sin(angle)),(int)(_y+height*Math.Cos(angle))),//(l-hsin(a),k+hcos(a)) P3
-                new Point((int)(_x + width*Math.Cos(angle)-height*Math.Sin(angle)),(int)(_y + width*Math.Sin(angle)+height*Math.Cos(angle))),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
-                new Point((int)(_x + width*Math.Cos(angle)),(int)(_y + width*Math.Sin(angle)) ),//l+wcos(a) P2
-                };
-        }
+       
 
         public Point_f[] Convert_Stats_To_Points_f()
         {
@@ -89,44 +68,45 @@ namespace final_project3.Classes
             lines_f.Add(new Line_f(points_f[points_f.Length-1], points_f[0], _canvas));
 
         }
-        public void Update_Obstacle_Size_f()
+        public void Update_Obstacle_Size_And_Pos_f()
         {
             for (int i = 0; i < lines_f.Count; i++)
             {
-                lines_f[i].UpdateLine();
+                lines_f[i].Update_Line_Real_Pos();
             }
         }
 
 
         //
-        public void DrawMultipleLines()
+
+        public override void Move_Distance(double dx, double dy)
         {
-            if (relative_Points == null) return;
-
-         
-            // remove the old lines , and Draw_line the new one , so there will not be overlap , when i resize it is necesery 
-            RemoveIfExsits();
-            lines= new List<Line>(); 
-
-            //Draw_line the lines on screen
-            for (int i = 0; i < relative_Points.Length - 1; i++)
+            _x += dx;
+            _y += dy;
+            for (int i = 0; i < lines_f.Count; i++)
             {
-                Draw_line(i,i+1);
+                lines_f[i].Move_Line(dx, dy);    
             }
-            Draw_line(relative_Points.Length - 1, 0);
+            UpdateRealPos();
         }
-        
-        public void RemoveIfExsits()//remove the old obstacles so when you resize the screen you don't have multiple lines that are the same
-        {
-            if (lines == null) return;
-            for (int i = 0; i < lines.Count; i++)
-            {
-                _canvas.Children.Remove(lines[i]);
-            }
+
+
+        //i dont need this opertions anymore , that how i used to use the obstacle class 
+        /*
+
+          public Point[] imaginary_points;
+        public Point[] relative_Points;
+
+        public Point_f[] relative_Points_f;
+           public List<Line> lines;
+            this.imaginary_points = Convert_Stats_To_Points();//Draw_line the rectangle 
+
+            convert_points_realtive();
+            lines = new List<Line>();
+            DrawMultipleLines();
             
-        }
 
-
+        //i dont need to delete the objects anymore , casue now insted of removeing the object i just change the line postion
         public void RemoveIfExsits_f()//remove the old obstacles so when you resize the screen you don't have multiple lines that are the same
         {
             if (lines == null) return;
@@ -139,7 +119,15 @@ namespace final_project3.Classes
 
 
 
+        public void RemoveIfExsits()//remove the old obstacles so when you resize the screen you don't have multiple lines that are the same
+        {
+            if (lines == null) return;
+            for (int i = 0; i < lines.Count; i++)
+            {
+                _canvas.Children.Remove(lines[i]);
+            }
 
+        }
         private void Draw_line(int i,int j)
         {
             Line line = new Line
@@ -157,15 +145,6 @@ namespace final_project3.Classes
 
        
 
-
-
-        public void move(int dx,int dy)
-        {
-            _x += dx;
-            _y += dy;
-            convert_points_realtive();
-        }
-
         public void convert_points_realtive()
         {
             this.imaginary_points = Convert_Stats_To_Points();//check , i need to update every time there is change 
@@ -175,9 +154,33 @@ namespace final_project3.Classes
                 relative_Points[i] = new Point((int)Convert_To_Real(imaginary_points[i].X), (int)Convert_To_Real(imaginary_points[i].Y));
             }
         }
+        public Point[] Convert_Stats_To_Points()
+        {
+            return new Point[]
+                {
+                new Point((int)_x,(int) _y),//(l,k) P1
+                new Point((int)(_x - height*Math.Sin(angle)),(int)(_y+height*Math.Cos(angle))),//(l-hsin(a),k+hcos(a)) P3
+                new Point((int)(_x + width*Math.Cos(angle)-height*Math.Sin(angle)),(int)(_y + width*Math.Sin(angle)+height*Math.Cos(angle))),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
+                new Point((int)(_x + width*Math.Cos(angle)),(int)(_y + width*Math.Sin(angle)) ),//l+wcos(a) P2
+                };
+        }
+        public void DrawMultipleLines()
+        {
+            if (relative_Points == null) return;
 
 
+            // remove the old lines , and Draw_line the new one , so there will not be overlap , when i resize it is necesery 
+            RemoveIfExsits();
+            lines = new List<Line>();
 
+            //Draw_line the lines on screen
+            for (int i = 0; i < relative_Points.Length - 1; i++)
+            {
+                Draw_line(i, i + 1);
+            }
+            Draw_line(relative_Points.Length - 1, 0);
+        }
+        */
 
     }
 

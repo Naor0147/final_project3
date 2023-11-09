@@ -80,6 +80,20 @@ namespace final_project3.Classes
                 window.TryResizeView(new Windows.Foundation.Size((int)newWidth, (int)window.VisibleBounds.Height));
             }
         }
+
+
+        public static bool isBetween(double v1, double middle, double v2)
+        {
+
+            if (v1 > v2)
+            {
+                double temp = v2;
+                v2 = v1;
+                v1 = temp;
+            }
+            return v1 < middle && middle < v2;
+        }
+
     }
     
 }

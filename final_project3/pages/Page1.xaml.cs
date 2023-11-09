@@ -53,11 +53,12 @@ namespace final_project3.pages
 
            //apper on screen just need to add list of all the objects so i can update their size  
            obstacles = new obstacle(canv,x: 400,y: 300, width: 400,height: 400, alpha: 30);
-
+            
             //obstacles.DrawMultipleLines();
             Start_Timer();
 
             
+
             // Debug.WriteLine(line_F.checkCol(line_F2));
 
 
@@ -80,8 +81,9 @@ namespace final_project3.pages
             }
             
            
-            
-            obstacles.Update_Obstacle_Size_f();
+            // low fps maybe i will try to move the object in a diffrent timer using dt and fps to make sure it will work 
+      //      obstacles.Update_Obstacle_Size_And_Pos_f();
+         //obstacles.Move_Distance(1, 1);
 
             /*
             obstacles.angle += 0.05;
@@ -104,7 +106,7 @@ namespace final_project3.pages
             {
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    arr[i].UpdateLine();
+                    arr[i].Update_Line_Real_Pos();
                 }
             }
         }

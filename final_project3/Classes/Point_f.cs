@@ -33,6 +33,15 @@ namespace final_project3.Classes
             real_x = Settings_class.Convert_To_Real(img_x);
             real_y = Settings_class.Convert_To_Real(img_y );
         }
+
+
+        public void Move_Point(double dx,double dy)
+        {
+            img_x+= dx;
+            img_y+= dy;
+            Update_Points();
+        }
+
         public double[] Get_Real_Point()
         {
             //you need to update the img pos before you send or you will recive an old points 
@@ -42,6 +51,9 @@ namespace final_project3.Classes
         {
             return $"Imaginary point value ({img_x} , {img_y}) ,real point value ({real_x},{real_y}) ";
         }
+
+
+
 
     }
 }
