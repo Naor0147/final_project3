@@ -23,7 +23,8 @@ namespace final_project3.Classes
         public const double IMAGINARY_SCREEN_HEIGHT = 1000;
         public const double IMAGINARY_SCREEN_WIDTH = 1920;
 
-        public static double Window_VisibleBounds_Height = 1000;
+        public static double Window_VisibleBounds_Height = 1000; 
+        public static double Window_VisibleBounds_Width = 1000;
         /*
          **What the diffreance between I 
          
@@ -71,13 +72,18 @@ namespace final_project3.Classes
             //Imaginary screen ratio {width/height}
             double ratio = IMAGINARY_SCREEN_WIDTH / IMAGINARY_SCREEN_HEIGHT;
 
-            
-            //_ratio.Text = window.VisibleBounds.Width + " *" + window.VisibleBounds.Height + " ratio: " + window.VisibleBounds.Width / window.VisibleBounds.Height;
-            if (window.VisibleBounds.Width / window.VisibleBounds.Height != ratio)
+
+            //Update the engine current height and width 
+            Window_VisibleBounds_Height = window.VisibleBounds.Height;
+            Window_VisibleBounds_Width = window.VisibleBounds.Width;
+
+            //check if the current ratio is the same as the desirable ratio 
+
+            if (Window_VisibleBounds_Width / Window_VisibleBounds_Height != ratio)
             {
                 double newWidth = window.VisibleBounds.Height * ratio;
 
-                window.TryResizeView(new Windows.Foundation.Size((int)newWidth, (int)window.VisibleBounds.Height));
+                window.TryResizeView(new Windows.Foundation.Size(newWidth, window.VisibleBounds.Height));
             }
         }
 

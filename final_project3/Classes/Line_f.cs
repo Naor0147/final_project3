@@ -107,7 +107,7 @@ namespace final_project3.Classes
                 X2 = P2.real_x,
                 Y2 = P2.real_y,
                 Stroke = new SolidColorBrush( this._line_color),
-                StrokeThickness = 2
+                StrokeThickness = 4
             };
             
             this._canv.Children.Add(_line_imaginary);
@@ -122,7 +122,10 @@ namespace final_project3.Classes
             Update_Line_Real_Pos();
         }
 
-
+        public void RemoveLine()
+        {
+            _canv.Children.Remove(_line_imaginary);
+        }
 
 
         public void Update_Line_Real_Pos()

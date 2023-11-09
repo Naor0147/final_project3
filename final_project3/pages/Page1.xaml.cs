@@ -38,22 +38,24 @@ namespace final_project3.pages
         private Compositor compositor;
 
         Ball ball;
-        Ball _ball;
+        
         obstacle obstacles, obstacles1;
         DispatcherTimer _timer;
         Line_f[] arr;
         public Page1()
         {
             this.InitializeComponent();
-            ball = new Ball(canv, 800, 400, 4, -10, 100, Colors.Beige);
+            ball = new Ball(canv, 800, 400, 0.04, -0.1, 100, Colors.Beige);
 
             
            
 
            //apper on screen just need to add list of all the objects so i can update their size  
            obstacles = new obstacle(canv,x: 400,y: 300, width: 400,height: 400, alpha: 30);
-           obstacles1 = new obstacle(canv,x: 200,y: 100, width: 400,height: 400, alpha: 10);
 
+           //game border
+           obstacles1 = new obstacle(canv,x: 5,y: 5, width: 1910,height: 990, alpha: 0);
+            
             
 
             // Debug.WriteLine(line_F.checkCol(line_F2));
@@ -68,20 +70,9 @@ namespace final_project3.pages
             Settings_class.Change_To_Right_Screen_Ratio();
 
 
-            //update the settings_class window visbile height , so the program can now how to transfrom the object to right size 
-            var window = ApplicationView.GetForCurrentView();
-            Settings_class.Window_VisibleBounds_Height = (int)window.VisibleBounds.Height;
+            obstacles1.UpdateRealPos();
 
 
-            if (ball == null) { return; }
-
-            if (arr != null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    arr[i].Update_Line_Real_Pos();
-                }
-            }
         }
 
     
@@ -90,19 +81,22 @@ namespace final_project3.pages
         {
             if (canv != null)
             {
+                /*
                 //i need to add a list with all of the objects in the screen and every time the screen updated there x will change 
 
 
                 //there is problem with the canvas it always showes as null
                 // need to change so the point will not need canv every time ;
                // Line_f line1 = new Line_f(new Point_f(200, 100),new Point_f(400, 400),canv , Colors.Red);
-/*
+
                 arr = new Line_f[] { new Line_f(new Point_f(200, 100), new Point_f(400, 400),canv),
             new Line_f(new Point_f(100, 100), new Point_f(300, 800), canv),
             new Line_f(new Point_f(450, 200), new Point_f(195, 295), canv),
                 new Line_f(new Point_f(650, 200), new Point_f(195, 295), canv)
             };
 */
+                ball.update_Size();
+                
 
             }
             CompositionTarget.Rendering += CompositionTarget_Rendering;
@@ -122,9 +116,9 @@ namespace final_project3.pages
 
 
             // low fps maybe i will try to move the object in a diffrent timer using dt and fps to make sure it will work 
-            obstacles.Update_Obstacle_Size_And_Pos_f();
+           /* obstacles.Update_Obstacle_Size_And_Pos_f();
             obstacles1.Update_Obstacle_Size_And_Pos_f();
-            obstacles.Move_Distance(1, 1);
+            obstacles.Move_Distance(1, 1);*/
 
         }
     }

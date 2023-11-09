@@ -37,8 +37,8 @@ namespace final_project3.Classes
             this._vx = vx;
             this._vy = vy;
             this._shape_Kind = shape_Kind;
-            this._real_x = Convert_To_Real(_x);
-            this._real_y = Convert_To_Real(_y);
+            this._real_x = Settings_class.Convert_To_Real(_x);
+            this._real_y = Settings_class.Convert_To_Real(_y);
         }
 
         public bool collision()
@@ -47,13 +47,13 @@ namespace final_project3.Classes
         }
 
 
-        public double Convert_To_Real(double value) => value * (_canvas.ActualHeight / Settings_class.IMAGINARY_SCREEN_HEIGHT) ;
+        //public double Settings_class.Convert_To_Real(double value) => value * (_canvas.ActualHeight / Settings_class.IMAGINARY_SCREEN_HEIGHT) ;
 
         //takes number on the imagenary canvas and convert to the real canvas
         public void UpdateRealPos()
         {
-            _real_x = Convert_To_Real(_x);
-            _real_y = Convert_To_Real(_y);
+            _real_x = Settings_class.Convert_To_Real(_x);
+            _real_y = Settings_class.Convert_To_Real(_y);
         }
        
 

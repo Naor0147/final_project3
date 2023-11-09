@@ -17,7 +17,7 @@ namespace final_project3.Classes
 
         //accelartion
         public double ax, ay;
-        public const double gravity = 0.098;
+        public const double gravity = 0.00098;
 
 
 
@@ -27,6 +27,8 @@ namespace final_project3.Classes
         
 
         public Ellipse _ellipse;
+
+        public obstacle ball_col_rect;
 
         public Ball(Canvas canvas, double x, double y, double vx, double vy, double size , Color color) : base(canvas, x, y, vx, vy,shape_Kind: Shape.circle)
         {
@@ -39,7 +41,7 @@ namespace final_project3.Classes
 
             //realtive
            
-            _real_size = Convert_To_Real(size);
+            _real_size = Settings_class.Convert_To_Real(size);
             
            
             createBall();
@@ -48,18 +50,7 @@ namespace final_project3.Classes
 
         private void createBall()
         {
-            /*
-            _ellipse = new Ellipse
-            {
-                Fill = new SolidColorBrush(_color),// i can also use imageBrush for photos 
-                StrokeThickness = 2,
-                Width = _real_size,
-                Height = _real_size,
-            };
-
-            Canvas.SetLeft(_ellipse, Convert_To_Real(_x));
-            Canvas.SetTop(_ellipse, Convert_To_Real(_y));
-            */
+          
             _ellipse = new Ellipse
             {
                 Fill = new SolidColorBrush(_color),// i can also use imageBrush for photos 
@@ -67,9 +58,11 @@ namespace final_project3.Classes
                 Width = _size,
                 Height = _size,
             };
-
             Canvas.SetLeft(_ellipse,_real_x);
             Canvas.SetTop(_ellipse, _real_y);
+
+            ball_col_rect = new obstacle(this._canvas, _x, _y, _size, _size);
+
             _canvas.Children.Add(_ellipse);
 
         }
@@ -84,17 +77,17 @@ namespace final_project3.Classes
             _y += _vy;
            
              update_Size();
-             _real_x = Convert_To_Real(_x)+_real_vx;
-            _real_y = Convert_To_Real(_y)+ _real_vy;
+             _real_x = Settings_class.Convert_To_Real(_x)+_real_vx;
+            _real_y = Settings_class.Convert_To_Real(_y)+ _real_vy;
             Canvas.SetLeft(_ellipse, _x);
             Canvas.SetTop(_ellipse, _y);
 
         }
         */
         
-        private void update_Size()
+        public void update_Size()
         {
-            _real_size = Convert_To_Real(this._size);
+            _real_size = Settings_class.Convert_To_Real(this._size);
             _ellipse.Width = _real_size;
             _ellipse.Height = _real_size;
         }
@@ -105,18 +98,26 @@ namespace final_project3.Classes
             //acc
             _vy += ay;
             _vx += ax;
+
+
+
             //add position
             _x += _vx;
             _y += _vy;
 
+
             UpdateRealPos();
-            update_Size();
-            //realtive 
-            /*
-            _real_ay = Convert_To_Real(ay);
-            _real_vy += _real_ay;
-            _real_ax = Convert_To_Real(ax);
-            _real_vx = _real_ax;*/
+            //ball Collison rect
+            ball_col_rect.Change_Pos(_x,_y);// i have no clue why it doesnt match the ball 
+            // i need to make a function in obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
+
+            //ball_col_rect.Duplicate_Obstacle(_x, _y);
+
+
+
+          
+           
+           
             Canvas.SetLeft(_ellipse, _real_x);
             Canvas.SetTop(_ellipse, _real_y);
 
