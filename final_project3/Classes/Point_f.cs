@@ -8,38 +8,65 @@ using Windows.UI.Xaml.Controls;
 
 namespace final_project3.Classes
 {
-    class Point_f
+    public class Point_f
     {
 
-        public double img_x, img_y;
+        private double _Img_x;
+        public double Img_x
+        {
+            get { return _Img_x; }
+            //when the user try to change the img_x i will automatically change the real_x
+            set
+            {
+                _Img_x = value;
+                Update_Points();
+            }
+        }
+
+        private double _Img_y;
+
+        public double Img_y
+        {
+            get { return _Img_y; }
+            //when the user try to change the img_x i will automatically change the real_x
+            set
+            {
+                _Img_y = value;
+                Update_Points();
+            }
+        }
+       
 
         public double real_x, real_y;
 
         private Canvas _canvas;
 
-        //insted of taking canvas i need to take the size of the canvas or just height beacuse the ratio is same all the way
+        //insted of taking canvas i need to take the size of the canvas or just height beacasue the ratio is same all the way
         public Point_f(double x, double y)
         {
-            img_x = x;
-            img_y = y;
+            Img_x = x;
+            Img_y = y;
 
+
+            Update_Points();
+            /*
             //until canvas has been set
             real_x = x;
-            real_y = y;
+            real_y = y;*/
         }
         public void Update_Points()
         {
            
-            real_x = Settings_class.Convert_To_Real(img_x);
-            real_y = Settings_class.Convert_To_Real(img_y );
+            real_x = Settings_class.Convert_To_Real(Img_x);
+            real_y = Settings_class.Convert_To_Real(Img_y );
         }
 
 
         public void Move_Point(double dx,double dy)
         {
-            img_x+= dx;
-            img_y+= dy;
-            Update_Points();
+            Img_x+= dx;
+            Img_y+= dy;
+            //Update_Points
         }
 
         public double[] Get_Real_Point()
@@ -49,7 +76,7 @@ namespace final_project3.Classes
         }
         public override string ToString()
         {
-            return $"Imaginary point value ({img_x} , {img_y}) ,real point value ({real_x},{real_y}) ";
+            return $"Imaginary point value ({Img_x} , {Img_y}) ,real point value ({real_x},{real_y}) ";
         }
 
 

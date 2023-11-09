@@ -30,7 +30,7 @@ namespace final_project3.Classes
 
         public obstacle ball_col_rect;
 
-        public Ball(Canvas canvas, double x, double y, double vx, double vy, double size , Color color) : base(canvas, x, y, vx, vy,shape_Kind: Shape.circle)
+        public Ball(Canvas canvas, Point_f point_F, double vx, double vy, double size , Color color) : base(canvas,point_F , vx, vy,shape_Kind: Shape.circle)
         {
      
             //only for ball class
@@ -58,10 +58,10 @@ namespace final_project3.Classes
                 Width = _size,
                 Height = _size,
             };
-            Canvas.SetLeft(_ellipse,_real_x);
-            Canvas.SetTop(_ellipse, _real_y);
+            Canvas.SetLeft(_ellipse,point_F.real_x);
+            Canvas.SetTop(_ellipse, point_F.real_y);
 
-            ball_col_rect = new obstacle(this._canvas, _x, _y, _size, _size);
+            ball_col_rect = new obstacle(this._canvas, point_F, _size, _size);
 
             _canvas.Children.Add(_ellipse);
 
@@ -102,15 +102,18 @@ namespace final_project3.Classes
 
 
             //add position
-            _x += _vx;
-            _y += _vy;
+           // _x += _vx;
+            //_y += _vy;
+            point_F.Move_Point(this._vx,this._vy);
 
 
             UpdateRealPos();
             //ball Collison rect
-            ball_col_rect.Change_Pos(_x,_y);// i have no clue why it doesnt match the ball 
+            ball_col_rect.Change_Pos(point_F.Img_x,point_F.Img_y);// i have no clue why it doesnt match the ball 
             // i need to make a function in obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
+            ball_col_rect.Update_Points();
 
+            ball_col_rect.DrawMultipleLines_Linef();
             //ball_col_rect.Duplicate_Obstacle(_x, _y);
 
 
@@ -118,8 +121,8 @@ namespace final_project3.Classes
           
            
            
-            Canvas.SetLeft(_ellipse, _real_x);
-            Canvas.SetTop(_ellipse, _real_y);
+            Canvas.SetLeft(_ellipse, point_F.real_x);
+            Canvas.SetTop(_ellipse, point_F.real_y);
 
           
 

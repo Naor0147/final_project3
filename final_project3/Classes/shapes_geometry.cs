@@ -12,14 +12,18 @@ namespace final_project3.Classes
         
         public Canvas _canvas; //canvas to Draw_line on
 
-        public double _x, _y;
+        
         /* posision on canvas , maybe i will try to make the x and y realtive to the canvas x y 
          I will to be making defalut screen size for my imaginary screen like 1600*900 where i place the x y ,
         than i will take the canvas real size , let imagine it will be 160*90 (for ez calc, the ratio has to be the same 16*9) 
         and x=800 y=490 =>
         the ratio => 160/1600=0.1 so the real x and y will be => x*0.1 => 800*0.1 = 80 , and the same for y
         */
-        public double _real_x, _real_y;
+       // public double _x, _y;
+       //public double _real_x, _real_y;
+
+
+        public Point_f point_F;
 
         // the same for speed
         public double _vx, _vy;
@@ -29,19 +33,24 @@ namespace final_project3.Classes
         public Shape _shape_Kind;
 
     
-        public shapes_geometry(Canvas canvas, double x, double y, double vx, double vy, Shape shape_Kind)
+        public shapes_geometry(Canvas canvas, Point_f point_F, double vx, double vy, Shape shape_Kind)
         {
             this._canvas = canvas;
-            this._x = x;
-            this._y = y;
+            /* this._x = x;
+             this._y = y;
+             this._real_x = Settings_class.Convert_To_Real(_x);
+             this._real_y = Settings_class.Convert_To_Real(_y);
+             */
+
+            this.point_F = point_F;
+
             this._vx = vx;
             this._vy = vy;
             this._shape_Kind = shape_Kind;
-            this._real_x = Settings_class.Convert_To_Real(_x);
-            this._real_y = Settings_class.Convert_To_Real(_y);
+            
         }
 
-        public bool collision()
+        public virtual bool collision()
         {
             return false;
         }
@@ -51,9 +60,10 @@ namespace final_project3.Classes
 
         //takes number on the imagenary canvas and convert to the real canvas
         public void UpdateRealPos()
-        {
+        {/*
             _real_x = Settings_class.Convert_To_Real(_x);
-            _real_y = Settings_class.Convert_To_Real(_y);
+            _real_y = Settings_class.Convert_To_Real(_y);*/
+            point_F.Update_Points();
         }
        
 

@@ -28,7 +28,7 @@ namespace final_project3.Classes
         //if you want change the variables , or how the rect looks , you need to make sure the the points[] has been updated 
 
 
-        public obstacle(Canvas canvas, double x, double y, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, x, y, vx, vy, shape_Kind)
+        public obstacle(Canvas canvas,Point_f point_F, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
         {
             this.width = width;
             this.height = height;
@@ -52,16 +52,22 @@ namespace final_project3.Classes
 
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
+            double _x = this.point_F.Img_x;
+            double _y= this.point_F.Img_y;
 
             return new Point_f[]
                 {
-                new Point_f(_x, _y),//(l,k) P1
+                point_F,//(l,k) P1 new Point_f(_x, _y)
                 new Point_f((_x - height * sin),(_y+ height * cos)),//(l-hsin(a),k+hcos(a)) P3
                 new Point_f((_x + width*cos-height*sin),(_y + width*sin+height*cos)),//(l+w*cos(a)-h*sin(a),k+w*sin(a)+h*cos(a)) P4
                 new Point_f((_x + width*cos),(_y + width*sin) ),//l+wcos(a) P2
                 };
         }
-
+        public void Update_Points()
+        {
+            Remove_Old_Lines();
+            this.points_f = Convert_Stats_To_Points_f();
+        }
 
 
         public void DrawMultipleLines_Linef()
@@ -104,8 +110,7 @@ namespace final_project3.Classes
 
         public override void Move_Distance(double dx, double dy)
         {
-            _x += dx;
-            _y += dy;
+            point_F.Move_Point(dx, dy);
             for (int i = 0; i < lines_f.Count; i++)
             {
                 lines_f[i].Move_Line(dx, dy);    
@@ -118,7 +123,7 @@ namespace final_project3.Classes
 
 
 
-            Move_Distance(x - this._x, y - this._y);
+            
 
            // this.points_f = Convert_Stats_To_Points_f();
             
@@ -128,8 +133,9 @@ namespace final_project3.Classes
 
         public void Duplicate_Obstacle(double x, double y)
         {
-            this._x = x;
-            this._y = y;
+            point_F.Img_x = x;
+            point_F.Img_y = y;
+
             this.points_f = Convert_Stats_To_Points_f();
             DrawMultipleLines_Linef();
 

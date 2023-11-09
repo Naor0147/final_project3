@@ -58,10 +58,10 @@ namespace final_project3.Classes
             this.P2 = p2;
 
             //make it simpler to use the class
-            this.x1 = p1.img_x;
-            this.x2 = p2.img_x;
-            this.y1 = p1.img_y;
-            this.y2 = p2.img_y;
+            this.x1 = p1.Img_x;
+            this.x2 = p2.Img_x;
+            this.y1 = p1.Img_y;
+            this.y2 = p2.Img_y;
 
             //what canvas to Draw_line on
             this._canv = _canv;

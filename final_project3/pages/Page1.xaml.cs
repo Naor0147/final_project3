@@ -45,16 +45,16 @@ namespace final_project3.pages
         public Page1()
         {
             this.InitializeComponent();
-            ball = new Ball(canv, 800, 400, 0.04, -0.1, 100, Colors.Beige);
+            ball = new Ball(canv, new Point_f(200,100), 0.04, -0.1, 100, Colors.Beige);
 
             
            
 
            //apper on screen just need to add list of all the objects so i can update their size  
-           obstacles = new obstacle(canv,x: 400,y: 300, width: 400,height: 400, alpha: 30);
+           obstacles = new obstacle(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
 
            //game border
-           obstacles1 = new obstacle(canv,x: 5,y: 5, width: 1910,height: 990, alpha: 0);
+           obstacles1 = new obstacle(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
             
             
 
@@ -110,7 +110,7 @@ namespace final_project3.pages
             if (ball != null)
             {
                 ball.move();
-                string x = "imag (" + ball._x + "," + ball._y + ")";
+                string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
                 _pos.Text = x;
             }
 
