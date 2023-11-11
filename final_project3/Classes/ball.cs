@@ -39,7 +39,7 @@ namespace final_project3.Classes
 
             ay = gravity;
 
-            //realtive
+            //relative
            
             _real_size = Settings_class.Convert_To_Real(size);
             
@@ -69,27 +69,14 @@ namespace final_project3.Classes
 
 
 
-        /*
-        public void updatePos()
-        {
-           
-            _x += _vx;
-            _y += _vy;
-           
-             update_Size();
-             _real_x = Settings_class.Convert_To_Real(_x)+_real_vx;
-            _real_y = Settings_class.Convert_To_Real(_y)+ _real_vy;
-            Canvas.SetLeft(_ellipse, _x);
-            Canvas.SetTop(_ellipse, _y);
-
-        }
-        */
+      
         
         public void update_Size()
         {
             _real_size = Settings_class.Convert_To_Real(this._size);
             _ellipse.Width = _real_size;
             _ellipse.Height = _real_size;
+            
         }
 
         public void move()
@@ -99,31 +86,32 @@ namespace final_project3.Classes
             _vy += ay;
             _vx += ax;
 
-
-
             //add position
-           // _x += _vx;
-            //_y += _vy;
-            point_F.Move_Point(this._vx,this._vy);
+          
+            point_F.Move_Point(_vx,_vy);
 
-
-            UpdateRealPos();
-            //ball Collison rect
-            ball_col_rect.Change_Pos(point_F.Img_x,point_F.Img_y);// i have no clue why it doesnt match the ball 
+            /*
+             
+            //workiinngg just need to
+            1. make this to one method 
+            2. make it more readable 
+            3. make so i dont delete the old lines i just transfrom the old lines to the new lines 
+            //ball Collison rect*/
+           
             // i need to make a function in obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
             ball_col_rect.Update_Points();
 
-            ball_col_rect.DrawMultipleLines_Linef();
+            //ball_col_rect.DrawMultipleLines_Linef();
             //ball_col_rect.Duplicate_Obstacle(_x, _y);
 
 
 
           
            
-           
+            update_Size();
             Canvas.SetLeft(_ellipse, point_F.real_x);
             Canvas.SetTop(_ellipse, point_F.real_y);
-
+            
           
 
         }

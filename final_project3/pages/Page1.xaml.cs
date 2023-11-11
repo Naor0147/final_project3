@@ -69,8 +69,8 @@ namespace final_project3.pages
             //change the screen to the right to the right screen size 
             Settings_class.Change_To_Right_Screen_Ratio();
 
-
-            obstacles1.UpdateRealPos();
+           
+           // obstacles1.UpdateRealPos();
 
 
         }

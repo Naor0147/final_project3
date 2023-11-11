@@ -45,7 +45,7 @@ namespace final_project3.Classes
         
 
 
-        //take the varibles in the class {x,y,width,height,angle} and convert it to useable point on the imaginary canvas
+        //take the variables in the class {x,y,width,height,angle} and convert it to rectangle in angle 
    
         public Point_f[] Convert_Stats_To_Points_f()
         {
@@ -63,11 +63,25 @@ namespace final_project3.Classes
                 new Point_f((_x + width*cos),(_y + width*sin) ),//l+wcos(a) P2
                 };
         }
+
+
+        /*this function Update the points of the obstacle 
+        when you update the points of the obstacle the following things could happen :
+        1. the obstacle would change place on screen
+        2.the size of the obstacle could change 
+        */ 
         public void Update_Points()
         {
-            Remove_Old_Lines();
+           
             this.points_f = Convert_Stats_To_Points_f();
+            for (int i = 0; i < lines_f.Count-1; i++)
+            {
+                lines_f[i].Change_Line_Points(points_f[i], points_f[i + 1]);
+            }
+            lines_f[lines_f.Count-1].Change_Line_Points(points_f[points_f.Length - 1], points_f[0]);
         }
+
+        
 
 
         public void DrawMultipleLines_Linef()
@@ -86,18 +100,20 @@ namespace final_project3.Classes
 
         }
 
+        
+
 
         // if the window size has been changed it will update the the pos of x y and the size 
         // i need to add the abilty to update if the object has been changed 
-        public void Update_Obstacle_Size_And_Pos_f()
+       /* public void Update_Obstacle_Size_And_Pos_f()
         {
             for (int i = 0; i < lines_f.Count; i++)
             {
                 lines_f[i].Update_Line_Real_Pos();
             }
-        }
+        }*/
 
-        public void Remove_Old_Lines()
+        public void Remove_Lines()
         {
             for (int i = 0; i < lines_f.Count; i++)
             {
@@ -120,14 +136,12 @@ namespace final_project3.Classes
 
         public void Change_Pos(double x, double y)
         {
-
-
+            //update point_f (the top left corner of the obstacles )
+            point_F.Set_Point(x, y);
 
             
 
-           // this.points_f = Convert_Stats_To_Points_f();
-            
-            //Update_Obstacle_Size_And_Pos_f();
+         
 
         }
 

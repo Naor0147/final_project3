@@ -19,7 +19,7 @@ namespace final_project3.Classes
             set
             {
                 _Img_x = value;
-                Update_Points();
+                real_x = Settings_class.Convert_To_Real(Img_x);
             }
         }
 
@@ -32,7 +32,7 @@ namespace final_project3.Classes
             set
             {
                 _Img_y = value;
-                Update_Points();
+                real_y = Settings_class.Convert_To_Real(Img_y);
             }
         }
        
@@ -67,6 +67,12 @@ namespace final_project3.Classes
             Img_x+= dx;
             Img_y+= dy;
             //Update_Points
+        }
+        public void Set_Point(double x,double y)
+        {
+            Img_x= x;
+            Img_y= y;
+
         }
 
         public double[] Get_Real_Point()

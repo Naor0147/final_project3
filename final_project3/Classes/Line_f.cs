@@ -67,10 +67,7 @@ namespace final_project3.Classes
             this._canv = _canv;
 
 
-            //the gradient 
-            m = (double)((y1 - y2) / (x1 - x2));
-            //the y value when x=0 
-            b = y1 - (m * x1);
+           
 
             //convert to function 
             function = Convert_line_to_func();
@@ -83,7 +80,10 @@ namespace final_project3.Classes
 
         private string Convert_line_to_func()
         {
-
+            //the gradient 
+            this.m = (double)((y1 - y2) / (x1 - x2));
+            //the y value when x=0 
+            this.b = y1 - (m * x1);
             //convert to function 
             function = $"y= {m}*x";
             if (b > 0)
@@ -120,7 +120,17 @@ namespace final_project3.Classes
             P1.Move_Point(dx, dy);
             P2.Move_Point(dx, dy);
             Update_Line_Real_Pos();
+            function = Convert_line_to_func();
         }
+        public void Change_Line_Points(Point_f p1, Point_f p2)
+        {
+             this.P1 = p1;
+             this.P2 = p2;
+            Update_Line_Real_Pos();
+            function = Convert_line_to_func();
+        }
+
+
 
         public void RemoveLine()
         {
@@ -164,8 +174,8 @@ namespace final_project3.Classes
             Point_f col = new Point_f(x, y);
 
 
-            bool condtion1 = Settings_class.isBetween(x1, x, x2);
-            bool condtion2 = Settings_class.isBetween(line.x1, x, line.x2);
+            bool condition1 = Settings_class.isBetween(x1, x, x2);
+            bool condition2 = Settings_class.isBetween(line.x1, x, line.x2);
 
             /*pretty sure i dont need this check 
              * cause i allready cheked the x of the line so i dont need to check the y 
@@ -174,7 +184,7 @@ namespace final_project3.Classes
             bool condtion4 = Settings_class.isBetween(line.y1, y, line.y2);
             return (condtion1 && condtion2 && condtion3 && condtion4);*/
 
-            return (condtion1 && condtion2 );
+            return (condition1 && condition2 );
 
 
         }
