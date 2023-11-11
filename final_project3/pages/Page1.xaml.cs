@@ -39,7 +39,7 @@ namespace final_project3.pages
 
         Ball ball;
         
-        obstacle obstacles, obstacles1;
+        Obstacle obstacles, obstacles1;
         DispatcherTimer _timer;
         Line_f[] arr;
         public Page1()
@@ -51,10 +51,10 @@ namespace final_project3.pages
            
 
            //apper on screen just need to add list of all the objects so i can update their size  
-           obstacles = new obstacle(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
+           obstacles = new Obstacle(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
 
            //game border
-           obstacles1 = new obstacle(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
+           obstacles1 = new Obstacle(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
             
             
 

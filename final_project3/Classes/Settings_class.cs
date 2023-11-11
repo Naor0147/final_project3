@@ -26,13 +26,13 @@ namespace final_project3.Classes
         public static double Window_VisibleBounds_Height = 1000; 
         public static double Window_VisibleBounds_Width = 1000;
         /*
-         **What the diffreance between I 
+        What the differences between Imaginary canvas(the Calculation Canvas) and Real canvas(the Rendering Canvas) 
          
-         to make the game work on any kind of screen I made consept called (Imaginary Canvas)
-        I Draw_line and work on the Imaginary Canvas is size doesnt change ,even if you change the window size ,
-        then i after i Draw_line on the imaginary canvas i convert the object postion and size to the size of the 
+        to make the game work on any kind of screen I made concepts called (Imaginary Canvas)
+        I Draw_line and work on the Imaginary Canvas is size doesn't change ,even if you change the window size ,
+        then i after i Draw_line on the imaginary canvas i convert the object position and size to the size of the 
         "Real Canvas" (the canvas you see when you play the game), and every time you resize the screen the objects 
-        update their size accordinliy to the screen size 
+        update their size accordingly to the screen size 
          
          */
 

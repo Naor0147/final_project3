@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Shapes;
 
 namespace final_project3.Classes
 {
-    class obstacle : shapes_geometry
+    class Obstacle : shapes_geometry
     {
         private double width;
         private double height;
@@ -28,7 +28,7 @@ namespace final_project3.Classes
         //if you want change the variables , or how the rect looks , you need to make sure the the points[] has been updated 
 
 
-        public obstacle(Canvas canvas,Point_f point_F, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
+        public Obstacle(Canvas canvas,Point_f point_F, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
         {
             this.width = width;
             this.height = height;
@@ -37,7 +37,7 @@ namespace final_project3.Classes
           
 
             this.points_f = Convert_Stats_To_Points_f();
-            DrawMultipleLines_Linef();
+            Draw_Obstacle();
 
         }
 
@@ -65,15 +65,18 @@ namespace final_project3.Classes
         }
 
 
-        /*this function Update the points of the obstacle 
-        when you update the points of the obstacle the following things could happen :
-        1. the obstacle would change place on screen
-        2.the size of the obstacle could change 
+
+
+        /*this function Update the points of the Obstacle 
+        when you update the points of the Obstacle the following things could happen :
+        1. the Obstacle would change place on screen
+        2.the size of the Obstacle could change 
         */ 
-        public void Update_Points()
+        public override void Update_Object_Position()
         {
-           
-            this.points_f = Convert_Stats_To_Points_f();
+            
+            this.points_f = Convert_Stats_To_Points_f();//==> this line makes sure the points of the Obstacle are up do date 
+
             for (int i = 0; i < lines_f.Count-1; i++)
             {
                 lines_f[i].Change_Line_Points(points_f[i], points_f[i + 1]);
@@ -83,15 +86,16 @@ namespace final_project3.Classes
 
         
 
-
-        public void DrawMultipleLines_Linef()
+        //Draws the obstacle on the screen
+        public void Draw_Obstacle()
         {
-            if (points_f == null) return;//if there isn't a list ' there nothing to draw 
+
+            if (points_f == null) return;//if there isn't a list of points there nothing to draw 
 
             lines_f = new List<Line_f>();// reset the list 
 
 
-            //this method connects all the point , and leave the last point to conect with first point 
+            //this method connects all the point , and leave the last point to connects with first point 
             for (int i = 0; i < points_f.Length-1; i++)
             {
                 lines_f.Add(new Line_f(points_f[i], points_f[i+1], _canvas));
@@ -122,27 +126,19 @@ namespace final_project3.Classes
         }
 
 
-        //
 
         public override void Move_Distance(double dx, double dy)
         {
             point_F.Move_Point(dx, dy);
-            for (int i = 0; i < lines_f.Count; i++)
-            {
-                lines_f[i].Move_Line(dx, dy);    
-            }
-            UpdateRealPos();
+
+            Update_Object_Position();
         }
 
         public void Change_Pos(double x, double y)
         {
             //update point_f (the top left corner of the obstacles )
             point_F.Set_Point(x, y);
-
-            
-
-         
-
+            Update_Object_Position();
         }
 
         public void Duplicate_Obstacle(double x, double y)
@@ -151,7 +147,7 @@ namespace final_project3.Classes
             point_F.Img_y = y;
 
             this.points_f = Convert_Stats_To_Points_f();
-            DrawMultipleLines_Linef();
+            Draw_Obstacle();
 
         }
 

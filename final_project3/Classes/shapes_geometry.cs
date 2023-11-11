@@ -56,13 +56,12 @@ namespace final_project3.Classes
         }
 
 
-        //public double Settings_class.Convert_To_Real(double value) => value * (_canvas.ActualHeight / Settings_class.IMAGINARY_SCREEN_HEIGHT) ;
+       
 
-        //takes number on the imagenary canvas and convert to the real canvas
-        public void UpdateRealPos()
-        {/*
-            _real_x = Settings_class.Convert_To_Real(_x);
-            _real_y = Settings_class.Convert_To_Real(_y);*/
+       
+        public virtual void Update_Object_Position()
+        {
+
             point_F.Update_Points();
         }
        

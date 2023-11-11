@@ -28,7 +28,7 @@ namespace final_project3.Classes
 
         public Ellipse _ellipse;
 
-        public obstacle ball_col_rect;
+        public Obstacle ball_col_rect;
 
         public Ball(Canvas canvas, Point_f point_F, double vx, double vy, double size , Color color) : base(canvas,point_F , vx, vy,shape_Kind: Shape.circle)
         {
@@ -61,7 +61,7 @@ namespace final_project3.Classes
             Canvas.SetLeft(_ellipse,point_F.real_x);
             Canvas.SetTop(_ellipse, point_F.real_y);
 
-            ball_col_rect = new obstacle(this._canvas, point_F, _size, _size);
+            ball_col_rect = new Obstacle(this._canvas, point_F, _size, _size);
 
             _canvas.Children.Add(_ellipse);
 
@@ -98,10 +98,10 @@ namespace final_project3.Classes
             3. make so i dont delete the old lines i just transfrom the old lines to the new lines 
             //ball Collison rect*/
            
-            // i need to make a function in obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
-            ball_col_rect.Update_Points();
+            // i need to make a function in Obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
+            ball_col_rect.Update_Object_Position();
 
-            //ball_col_rect.DrawMultipleLines_Linef();
+            //ball_col_rect.Draw_Obstacle();
             //ball_col_rect.Duplicate_Obstacle(_x, _y);
 
 

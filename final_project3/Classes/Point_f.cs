@@ -8,10 +8,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace final_project3.Classes
 {
+
+    // better alternative than the defaults Point class 
     public class Point_f
     {
-
+        // save in the class in self so when you do get you will not get into infinite recursive when you do get
         private double _Img_x;
+        private double _Img_y;
+
         public double Img_x
         {
             get { return _Img_x; }
@@ -22,9 +26,6 @@ namespace final_project3.Classes
                 real_x = Settings_class.Convert_To_Real(Img_x);
             }
         }
-
-        private double _Img_y;
-
         public double Img_y
         {
             get { return _Img_y; }
@@ -35,30 +36,33 @@ namespace final_project3.Classes
                 real_y = Settings_class.Convert_To_Real(Img_y);
             }
         }
-       
-
+  
+        //represent the point on the real canvas(the one you see, that could be resizable) 
         public double real_x, real_y;
 
+        //the canvas you work on 
         private Canvas _canvas;
 
-        //insted of taking canvas i need to take the size of the canvas or just height beacasue the ratio is same all the way
+        
+
+
+
+        //take a x and y and convent it two point one the Imaginary canvas and one on the Real canvas 
         public Point_f(double x, double y)
         {
             Img_x = x;
             Img_y = y;
-
-
             Update_Points();
-            /*
-            //until canvas has been set
-            real_x = x;
-            real_y = y;*/
+
+           // img=new Img(x, y);
+          //  real = new Real(img);
+            
         }
         public void Update_Points()
         {
            
             real_x = Settings_class.Convert_To_Real(Img_x);
-            real_y = Settings_class.Convert_To_Real(Img_y );
+            real_y = Settings_class.Convert_To_Real(Img_y);
         }
 
 
@@ -66,7 +70,7 @@ namespace final_project3.Classes
         {
             Img_x+= dx;
             Img_y+= dy;
-            //Update_Points
+            //Update_Object_Position
         }
         public void Set_Point(double x,double y)
         {
@@ -77,7 +81,7 @@ namespace final_project3.Classes
 
         public double[] Get_Real_Point()
         {
-            //you need to update the img pos before you send or you will recive an old points 
+            //you need to update the img pos before you send or you will receive an old points 
             return new double[] { real_x, real_y } ;
         }
         public override string ToString()
@@ -86,7 +90,37 @@ namespace final_project3.Classes
         }
 
 
+       
+        /*
+        public class Img
+        {
+        public double x { get; private set; }
+        public double y { get; private set; }
 
+            public Img (double x, double y)
+            {
+                this.x = x;
+                this.y = y;
+                
+            }
 
+        }
+        public class Real
+        {
+            public double x { get; private set; }
+            public double y { get; private set; }
+
+            public Real(Img img)
+            {
+                update(img);
+            }
+            
+            public void update(Img img) {
+                this.x = Settings_class.Convert_To_Real(img.x);
+                this.y = Settings_class.Convert_To_Real(img.y);
+            }
+        */
     }
+
+}
 }
