@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Collections.Generic;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
 
 namespace final_project3.Classes
 {
@@ -71,9 +73,20 @@ namespace final_project3.Classes
 
 
 
+        //make a trail by the size of 100 obstacles 
+        private Queue<Rectangle_Shape> trail_list = new Queue<Rectangle_Shape>(100);
+        public void createTrail()
+        {
+            Rectangle_Shape obstacle = new Rectangle_Shape(_canvas, point_F, 5, 5, Colors.Red);
 
-        
-        
+            trail_list.Enqueue(obstacle);
+            if (trail_list.Count>100)
+            {
+                trail_list.Dequeue().Remove_Lines();
+            }
+
+        }
+
 
 
     }

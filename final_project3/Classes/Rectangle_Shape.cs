@@ -11,10 +11,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using Color = Windows.UI.Color;
 
 namespace final_project3.Classes
 {
-    class Obstacle : shapes_geometry
+    class Rectangle_Shape : shapes_geometry
     {
         private double width;
         private double height;
@@ -24,29 +25,35 @@ namespace final_project3.Classes
        
         public List<Line_f> lines_f;
 
+        public Color Color { get; set; }
+        public Color color_null = new Color();
 
         //if you want change the variables , or how the rect looks , you need to make sure the the points[] has been updated 
 
 
-        public Obstacle(Canvas canvas,Point_f point_F, double width, double height, double alpha =0, double vx=0, double vy=0,Shape shape_Kind=Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
+       
+        public Rectangle_Shape(Canvas canvas, Point_f point_F, double width, double height,Color color= new Color() ,double alpha = 0, double vx = 0, double vy = 0, Shape shape_Kind = Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
         {
+            //gets color
+            this.Color = color;
+
             this.width = width;
             this.height = height;
             this.angle = alpha;
-
-          
 
             this.points_f = Convert_Stats_To_Points_f();
             Draw_Obstacle();
 
         }
 
-
         
 
 
+
+
+
         //take the variables in the class {x,y,width,height,angle} and convert it to rectangle in angle 
-   
+
         public Point_f[] Convert_Stats_To_Points_f()
         {
 
@@ -67,15 +74,15 @@ namespace final_project3.Classes
 
 
 
-        /*this function Update the points of the Obstacle 
-        when you update the points of the Obstacle the following things could happen :
-        1. the Obstacle would change place on screen
-        2.the size of the Obstacle could change 
+        /*this function Update the points of the Rectangle_Shape 
+        when you update the points of the Rectangle_Shape the following things could happen :
+        1. the Rectangle_Shape would change place on screen
+        2.the size of the Rectangle_Shape could change 
         */ 
         public override void Update_Object_Position()
         {
             
-            this.points_f = Convert_Stats_To_Points_f();//==> this line makes sure the points of the Obstacle are up do date 
+            this.points_f = Convert_Stats_To_Points_f();//==> this line makes sure the points of the Rectangle_Shape are up do date 
 
             for (int i = 0; i < lines_f.Count-1; i++)
             {
@@ -98,24 +105,35 @@ namespace final_project3.Classes
             //this method connects all the point , and leave the last point to connects with first point 
             for (int i = 0; i < points_f.Length-1; i++)
             {
-                lines_f.Add(new Line_f(points_f[i], points_f[i+1], _canvas));
+                Draw_Line(i,i+1);//draw the line on the screen and added it to the list 
             }
-            lines_f.Add(new Line_f(points_f[points_f.Length-1], points_f[0], _canvas));
+            Draw_Line(points_f.Length-1,0);//draw the line on the screen and added it to the list 
 
         }
 
-        
+        private void Draw_Line(int i,int j)
+        {
+            if (Color == color_null)//{#00000000} checks if the color is null and if so gives a random color
+            {
+                lines_f.Add(new Line_f(points_f[i], points_f[j], _canvas));
+                return;
+            }
+
+            lines_f.Add(new Line_f(points_f[i], points_f[j], _canvas,Color));
+        }
+
+
 
 
         // if the window size has been changed it will update the the pos of x y and the size 
         // i need to add the abilty to update if the object has been changed 
-       /* public void Update_Obstacle_Size_And_Pos_f()
-        {
-            for (int i = 0; i < lines_f.Count; i++)
-            {
-                lines_f[i].Update_Line_Real_Pos();
-            }
-        }*/
+        /* public void Update_Obstacle_Size_And_Pos_f()
+         {
+             for (int i = 0; i < lines_f.Count; i++)
+             {
+                 lines_f[i].Update_Line_Real_Pos();
+             }
+         }*/
 
         public void Remove_Lines()
         {

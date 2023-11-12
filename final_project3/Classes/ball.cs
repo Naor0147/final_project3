@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -28,7 +29,7 @@ namespace final_project3.Classes
 
         public Ellipse _ellipse;
 
-        public Obstacle ball_col_rect;
+        public Rectangle_Shape ball_col_rect;
 
         public Ball(Canvas canvas, Point_f point_F, double vx, double vy, double size , Color color) : base(canvas,point_F , vx, vy,shape_Kind: Shape.circle)
         {
@@ -61,7 +62,7 @@ namespace final_project3.Classes
             Canvas.SetLeft(_ellipse,point_F.real_x);
             Canvas.SetTop(_ellipse, point_F.real_y);
 
-            ball_col_rect = new Obstacle(this._canvas, point_F, _size, _size);
+            ball_col_rect = new Rectangle_Shape(this._canvas, point_F, _size, _size);
 
             _canvas.Children.Add(_ellipse);
 
@@ -98,7 +99,7 @@ namespace final_project3.Classes
             3. make so i dont delete the old lines i just transfrom the old lines to the new lines 
             //ball Collison rect*/
            
-            // i need to make a function in Obstacle class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
+            // i need to make a function in Rectangle_Shape class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
             ball_col_rect.Update_Object_Position();
 
             //ball_col_rect.Draw_Obstacle();
@@ -115,6 +116,7 @@ namespace final_project3.Classes
           
 
         }
+        
 
 
     }

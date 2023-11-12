@@ -39,7 +39,7 @@ namespace final_project3.pages
 
         Ball ball;
         
-        Obstacle obstacles, obstacles1;
+        Rectangle_Shape obstacles, obstacles1;
         DispatcherTimer _timer;
         Line_f[] arr;
         public Page1()
@@ -51,10 +51,10 @@ namespace final_project3.pages
            
 
            //apper on screen just need to add list of all the objects so i can update their size  
-           obstacles = new Obstacle(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
+           obstacles = new Rectangle_Shape(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
 
            //game border
-           obstacles1 = new Obstacle(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
+           obstacles1 = new Rectangle_Shape(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
             
             
 
@@ -107,18 +107,14 @@ namespace final_project3.pages
 
         private void CompositionTarget_Rendering(object sender, object e)
         {
-            if (ball != null)
-            {
+           
                 ball.move();
                 string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
                 _pos.Text = x;
-            }
+                ball.createTrail();
+          
 
 
-            // low fps maybe i will try to move the object in a diffrent timer using dt and fps to make sure it will work 
-           /* obstacles.Update_Obstacle_Size_And_Pos_f();
-            obstacles1.Update_Obstacle_Size_And_Pos_f();
-            obstacles.Move_Distance(1, 1);*/
 
         }
     }
