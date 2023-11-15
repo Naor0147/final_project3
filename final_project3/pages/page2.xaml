@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="rootGrid">
+        <TextBlock x:Name="fpstextblock" VerticalAlignment="Top" Margin="0,64,0,0"/>
         <Rectangle x:Name="myRectangle" Width="100" Height="100" Fill="Red" />
     </Grid>
 </Page>

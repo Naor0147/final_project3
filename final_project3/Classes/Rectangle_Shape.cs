@@ -26,6 +26,8 @@ namespace final_project3.Classes
         public List<Line_f> lines_f;
 
         public Color Color { get; set; }
+
+        //when the user doesn't input color
         public Color color_null = new Color();
 
         //if you want change the variables , or how the rect looks , you need to make sure the the points[] has been updated 
@@ -122,18 +124,6 @@ namespace final_project3.Classes
             lines_f.Add(new Line_f(points_f[i], points_f[j], _canvas,Color));
         }
 
-
-
-
-        // if the window size has been changed it will update the the pos of x y and the size 
-        // i need to add the abilty to update if the object has been changed 
-        /* public void Update_Obstacle_Size_And_Pos_f()
-         {
-             for (int i = 0; i < lines_f.Count; i++)
-             {
-                 lines_f[i].Update_Line_Real_Pos();
-             }
-         }*/
 
         public void Remove_Lines()
         {

@@ -29,6 +29,9 @@ namespace final_project3.pages
         private Compositor compositor;
         private float angle = 0.0f;
 
+        private DispatcherTimer fpsTimer;
+        private int frameCount;
+
         public page2()
         {
             this.InitializeComponent();
@@ -38,13 +41,39 @@ namespace final_project3.pages
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             InitializeComposition();
-            CompositionTarget.Rendering += CompositionTarget_Rendering1;
+            Functions_add();
         }
 
+        private void Functions_add()
+        {
+            CompositionTarget.Rendering += CompositionTarget_Rendering1;
+            fpsTimer = new DispatcherTimer();
+            fpsTimer.Interval = TimeSpan.FromSeconds(1);
+            fpsTimer.Tick += FpsTimer_Tick;
+            fpsTimer.Start();
+        }
+
+
+        //added fps counter 
+        private void FpsTimer_Tick(object sender, object e)
+        {
+           fpstextblock.Text = $"FPS: {frameCount:F2}";
+            // Reset counters
+            frameCount = 0;
+           
+        }
+
+
+        //function that get called every frame ;
         private void CompositionTarget_Rendering1(object sender, object e)
         {
+            //fps counter 
+            frameCount += 1;
+
+
             myRectangle.Width += 1;
             myRectangle.Height += 1;
+            
         }
 
         private void InitializeComposition()

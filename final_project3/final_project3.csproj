@@ -120,7 +120,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ball.cs" />
+    <Compile Include="Classes\Img_Canvas.cs" />
     <Compile Include="Classes\Line_f.cs" />
+    <Compile Include="Classes\PhysicBody.cs" />
     <Compile Include="Classes\Rectangle_Shape.cs" />
     <Compile Include="Classes\Point_f.cs" />
     <Compile Include="Classes\Settings_class.cs" />
