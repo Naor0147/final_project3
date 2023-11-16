@@ -42,10 +42,15 @@ namespace final_project3.pages
         Rectangle_Shape obstacles, obstacles1;
         DispatcherTimer _timer;
         Line_f[] arr;
+
+
+        private DispatcherTimer fpsTimer;
+        private int frameCount;
+
         public Page1()
         {
             this.InitializeComponent();
-            ball = new Ball(canv,new PhysicBody( new Point_f(200,100), 40, 10), 100, Colors.Beige);
+            ball = new Ball(canv,new PhysicBody( new Point_f(200,100), 40, 10,0,10), 100, Colors.Beige);
 
             
            
@@ -59,7 +64,7 @@ namespace final_project3.pages
             
 
             // Debug.WriteLine(line_F.checkCol(line_F2));
-
+            
 
         }
 
@@ -68,6 +73,7 @@ namespace final_project3.pages
         {
             //change the screen to the right to the right screen size 
             Settings_class.Change_To_Right_Screen_Ratio();
+
             obstacles.Update_Object_Position();
             obstacles1.Update_Object_Position();
 
@@ -83,41 +89,50 @@ namespace final_project3.pages
         {
             if (canv != null)
             {
-                /*
-                //i need to add a list with all of the objects in the screen and every time the screen updated there x will change 
+               
 
-
-                //there is problem with the canvas it always showes as null
-                // need to change so the point will not need canv every time ;
-               // Line_f line1 = new Line_f(new Point_f(200, 100),new Point_f(400, 400),canv , Colors.Red);
-
-                arr = new Line_f[] { new Line_f(new Point_f(200, 100), new Point_f(400, 400),canv),
-            new Line_f(new Point_f(100, 100), new Point_f(300, 800), canv),
-            new Line_f(new Point_f(450, 200), new Point_f(195, 295), canv),
-                new Line_f(new Point_f(650, 200), new Point_f(195, 295), canv)
-            };
-*/
                 ball.update_Size();
                 
 
             }
+            Functions_add();
+
+
+
+        }
+        private void Functions_add()
+        {
             CompositionTarget.Rendering += CompositionTarget_Rendering;
+            fpsTimer = new DispatcherTimer();
+            fpsTimer.Interval = TimeSpan.FromSeconds(1);
+            fpsTimer.Tick += FpsTimer_Tick; 
+            fpsTimer.Start();
+        }
 
+        private void FpsTimer_Tick(object sender, object e)
+        {
+            fpstextblock.Text = $"FPS: {frameCount:F2}";
 
-
+            Classes.Settings_class.current_FPS = frameCount;
+            // Reset counters
+            frameCount = 0;
         }
 
         private void CompositionTarget_Rendering(object sender, object e)
         {
            
-                ball.move();
-                string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
-                _pos.Text = x;
-                ball.CreateTrail();
-          
+            ball.move();
+            string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
+            _pos.Text = x;
+            ball.CreateTrail();
+            ball.physic_body.Move_Dt(60);
+
 
 
 
         }
+
+        
+
     }
 }
