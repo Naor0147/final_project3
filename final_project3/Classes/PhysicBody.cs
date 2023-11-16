@@ -9,10 +9,8 @@ namespace final_project3.Classes
     public class PhysicBody
     {
         //Position 
-        public double x;
-        public double y;
-        //maybe i will use the z if i want to take a body back in the z axies
-        public double z;
+        public Point_f point;
+        
 
         //The speed of the body in for sec 
         public double vy;
@@ -22,11 +20,10 @@ namespace final_project3.Classes
         public double ax;
         public double ay;
 
-        public PhysicBody(double x, double y, double vy=0, double vx = 0, double ax = 0, double ay = 0 , double z=0)
+        public PhysicBody(Point_f point_F, double vy=0, double vx = 0, double ax = 0, double ay = 0 )
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+
+            point = point_F;
 
             this.vy = vy;
             this.vx = vx;
@@ -38,7 +35,15 @@ namespace final_project3.Classes
         //get the fps in game is divided by dt 
         public void Move_Dt(double Fps)
         {
+            double dt = 1 / Fps;
+
+            //add a/fps so you move the same if you diffrent fps 
+            vx += ax * dt;
+            vy += ay * dt;
             
+            //you move the same in every frame 
+            point.Img_x += vx * dt;
+            point.Img_y += vy * dt;
 
         }
 

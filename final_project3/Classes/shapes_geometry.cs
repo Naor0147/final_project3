@@ -28,14 +28,14 @@ namespace final_project3.Classes
         public Point_f point_F;
 
         // the same for speed
-        public double _vx, _vy;
-        
+
+        public PhysicBody physic_body;
 
 
         public Shape _shape_Kind;
 
     
-        public shapes_geometry(Canvas canvas, Point_f point_F, double vx, double vy, Shape shape_Kind)
+        public shapes_geometry(Canvas canvas, PhysicBody physic_body, Shape shape_Kind)
         {
             this._canvas = canvas;
             /* this._x = x;
@@ -44,10 +44,10 @@ namespace final_project3.Classes
              this._real_y = Settings_class.Convert_To_Real(_y);
              */
 
-            this.point_F = point_F;
+            this.physic_body = physic_body;
+            this.point_F = physic_body.point;
 
-            this._vx = vx;
-            this._vy = vy;
+           
             this._shape_Kind = shape_Kind;
             
         }

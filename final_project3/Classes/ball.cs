@@ -31,7 +31,7 @@ namespace final_project3.Classes
 
         public Rectangle_Shape ball_col_rect;
 
-        public Ball(Canvas canvas, Point_f point_F, double vx, double vy, double size , Color color) : base(canvas,point_F , vx, vy,shape_Kind: Shape.circle)
+        public Ball(Canvas canvas, PhysicBody physicBody, double size , Color color) : base(canvas, physicBody, shape_Kind: Shape.circle)
         {
      
             //only for ball class
@@ -62,8 +62,8 @@ namespace final_project3.Classes
             Canvas.SetLeft(_ellipse,point_F.real_x);
             Canvas.SetTop(_ellipse, point_F.real_y);
 
-            ball_col_rect = new Rectangle_Shape(this._canvas, point_F, _size, _size);
-
+            ball_col_rect = new Rectangle_Shape(this._canvas,new PhysicBody(point_F), _size, _size);
+            
             _canvas.Children.Add(_ellipse);
 
         }

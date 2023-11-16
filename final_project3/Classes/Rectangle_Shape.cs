@@ -34,7 +34,7 @@ namespace final_project3.Classes
 
 
        
-        public Rectangle_Shape(Canvas canvas, Point_f point_F, double width, double height,Color color= new Color() ,double alpha = 0, double vx = 0, double vy = 0, Shape shape_Kind = Shape.rectangle) : base(canvas, point_F, vx, vy, shape_Kind)
+        public Rectangle_Shape(Canvas canvas, PhysicBody physicBody, double width, double height,Color color= new Color() ,double alpha = 0) : base(canvas, physicBody, shape_Kind : Shape.rectangle)
         {
             //gets color
             this.Color = color;
