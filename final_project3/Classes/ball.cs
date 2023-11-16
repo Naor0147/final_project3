@@ -16,9 +16,7 @@ namespace final_project3.Classes
         public double _size;//2 radius size
         public Color _color;// color of the ball
 
-        //accelartion
-        public double ax, ay;
-        public const double gravity = 0.00098;
+       
 
 
 
@@ -38,9 +36,8 @@ namespace final_project3.Classes
             this._size = size;
             this._color = color;
 
-            ay = gravity;
-
-            //relative
+            
+      
            
             _real_size = Settings_class.Convert_To_Real(size);
             
@@ -82,14 +79,7 @@ namespace final_project3.Classes
 
         public void move()
         {
-            //reg
-            //acc
-            _vy += ay;
-            _vx += ax;
-
-            //add position
-          
-            point_F.Move_Point(_vx,_vy);
+            
 
             /*
              

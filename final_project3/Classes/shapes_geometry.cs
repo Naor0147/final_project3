@@ -74,13 +74,15 @@ namespace final_project3.Classes
 
 
         //make a trail by the size of 100 obstacles 
-        private Queue<Rectangle_Shape> trail_list = new Queue<Rectangle_Shape>(100);
-        public void createTrail()
+        private static int trail_dis = 500;
+        private Queue<Rectangle_Shape> trail_list = new Queue<Rectangle_Shape>(trail_dis);
+
+        public void CreateTrail()
         {
-            Rectangle_Shape obstacle = new Rectangle_Shape(_canvas, point_F, 5, 5, Colors.Red);
+            Rectangle_Shape obstacle = new Rectangle_Shape(_canvas,new PhysicBody( point_F), 5, 5, Colors.Red);
 
             trail_list.Enqueue(obstacle);
-            if (trail_list.Count>100)
+            if (trail_list.Count>trail_dis)
             {
                 trail_list.Dequeue().Remove_Lines();
             }

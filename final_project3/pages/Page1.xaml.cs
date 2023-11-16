@@ -45,16 +45,16 @@ namespace final_project3.pages
         public Page1()
         {
             this.InitializeComponent();
-            ball = new Ball(canv, new Point_f(200,100), 0.04, -0.1, 100, Colors.Beige);
+            ball = new Ball(canv,new PhysicBody( new Point_f(200,100), 40, 10), 100, Colors.Beige);
 
             
            
 
            //apper on screen just need to add list of all the objects so i can update their size  
-           obstacles = new Rectangle_Shape(canv,new Point_f(400,400), width: 400,height: 400, alpha: 30);
+           obstacles = new Rectangle_Shape(canv,new PhysicBody( new Point_f(400,400)), width: 400,height: 400, alpha: 30);
 
            //game border
-           obstacles1 = new Rectangle_Shape(canv,new Point_f(5,5), width: 1910,height: 990, alpha: 0);
+           obstacles1 = new Rectangle_Shape(canv,new PhysicBody(new Point_f(5,5)), width: 1910,height: 990, alpha: 0);
             
             
 
@@ -68,14 +68,16 @@ namespace final_project3.pages
         {
             //change the screen to the right to the right screen size 
             Settings_class.Change_To_Right_Screen_Ratio();
+            obstacles.Update_Object_Position();
+            obstacles1.Update_Object_Position();
 
-           
-           // obstacles1.UpdateRealPos();
+
+            // obstacles1.UpdateRealPos();
 
 
         }
 
-    
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -111,7 +113,7 @@ namespace final_project3.pages
                 ball.move();
                 string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
                 _pos.Text = x;
-                ball.createTrail();
+                ball.CreateTrail();
           
 
 

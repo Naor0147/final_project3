@@ -20,6 +20,11 @@ namespace final_project3.Classes
         public double ax;
         public double ay;
 
+
+        //const
+        
+        public const double gravity = 0.00098;
+
         public PhysicBody(Point_f point_F, double vy=0, double vx = 0, double ax = 0, double ay = 0 )
         {
 

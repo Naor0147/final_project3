@@ -30,7 +30,7 @@ namespace final_project3
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(page2));
+            Frame.Navigate(typeof(Page1));
         }
     }
 }

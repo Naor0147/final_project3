@@ -23,7 +23,7 @@ namespace final_project3.pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class page2 : Page
+    public sealed partial class Page2 : Page
     {
         private Visual visual;
         private Compositor compositor;
@@ -32,7 +32,7 @@ namespace final_project3.pages
         private DispatcherTimer fpsTimer;
         private int frameCount;
 
-        public page2()
+        public Page2()
         {
             this.InitializeComponent();
             Loaded += MainPage_Loaded;
@@ -58,6 +58,8 @@ namespace final_project3.pages
         private void FpsTimer_Tick(object sender, object e)
         {
            fpstextblock.Text = $"FPS: {frameCount:F2}";
+
+            Classes.Settings_class.current_FPS = frameCount;
             // Reset counters
             frameCount = 0;
            

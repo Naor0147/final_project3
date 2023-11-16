@@ -49,7 +49,7 @@ namespace final_project3.Classes
 
             return value * (_canvas.ActualHeight / IMAGINARY_SCREEN_HEIGHT);
          }*/
-
+        public static double current_FPS = 60;
 
         public static double Convert_To_Real(double value)
         {
