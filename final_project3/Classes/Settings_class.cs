@@ -36,20 +36,9 @@ namespace final_project3.Classes
          
          */
 
-        //convert Imaginary canvas value to real canvas value ;
-        /* public static double Convert_To_Real(double value, Canvas _canvas)
-         {
-             var window = ApplicationView.GetForCurrentView();
-
-             //canvas height {_canvas.ActualHeight}
-             Debug.WriteLine($"  window visible bounds {window.VisibleBounds.Height} ");
-
-             if (_canvas == null)
-                 return value;
-
-            return value * (_canvas.ActualHeight / IMAGINARY_SCREEN_HEIGHT);
-         }*/
-        public static double current_FPS = 60;
+       
+        
+        public static double current_FPS = 10000000;//sets the value really high so the object doesn't move until the fps has been set
 
         public static double Convert_To_Real(double value)
         {

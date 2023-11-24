@@ -120,12 +120,12 @@ namespace final_project3.pages
 
         private void CompositionTarget_Rendering(object sender, object e)
         {
-           
+            frameCount++;
             ball.move();
             string x = "imag (" + ball.point_F.Img_x + "," + ball.point_F.Img_x + ") and real (" + ball.point_F.real_x + "," + ball.point_F.real_x + ")";
             _pos.Text = x;
-            ball.CreateTrail();
-            ball.physic_body.Move_Dt(60);
+            //ball.CreateTrail();
+            ball.physic_body.Move_Dt();
 
 
 

@@ -38,9 +38,9 @@ namespace final_project3.Classes
         }
 
         //get the fps in game is divided by dt 
-        public void Move_Dt(double Fps)
+        public void Move_Dt()
         {
-            double dt = 1 / Fps;
+            double dt = 1 / Settings_class.current_FPS;
 
             //add a/fps so you move the same if you diffrent fps 
             vx += ax * dt;

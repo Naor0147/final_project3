@@ -91,6 +91,8 @@ namespace final_project3.Classes
                 lines_f[i].Change_Line_Points(points_f[i], points_f[i + 1]);
             }
             lines_f[lines_f.Count-1].Change_Line_Points(points_f[points_f.Length - 1], points_f[0]);
+
+            UpdateTrail();
         }
 
         

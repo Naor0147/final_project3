@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Shapes;
 
 namespace final_project3.Classes
 {
@@ -34,7 +35,8 @@ namespace final_project3.Classes
 
         public Shape _shape_Kind;
 
-    
+        private bool _trail = false;
+        
         public shapes_geometry(Canvas canvas, PhysicBody physic_body, Shape shape_Kind)
         {
             this._canvas = canvas;
@@ -65,6 +67,17 @@ namespace final_project3.Classes
         {
 
             point_F.Update_Points();
+            UpdateTrail();
+        }
+        public void UpdateTrail()
+        {
+            if (_trail)
+            {
+                foreach (Rectangle_Shape item in trail_list)
+                {
+                    item.Update_Object_Position();
+                }
+            }
         }
        
 
@@ -79,6 +92,7 @@ namespace final_project3.Classes
 
         public void CreateTrail()
         {
+            _trail = true;
             Rectangle_Shape obstacle = new Rectangle_Shape(_canvas,new PhysicBody( point_F), 5, 5, Colors.Red);
 
             trail_list.Enqueue(obstacle);
@@ -89,6 +103,7 @@ namespace final_project3.Classes
 
         }
 
+       
 
 
     }

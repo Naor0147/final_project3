@@ -65,8 +65,8 @@ namespace final_project3.Classes
 
         }
 
-
-
+      
+        
       
         
         public void update_Size()
@@ -91,14 +91,8 @@ namespace final_project3.Classes
            
             // i need to make a function in Rectangle_Shape class where i can move the obstcale to any x ,y and not by dx and dy , this probbley the problem 
             ball_col_rect.Update_Object_Position();
-
-            //ball_col_rect.Draw_Obstacle();
-            //ball_col_rect.Duplicate_Obstacle(_x, _y);
-
-
-
-          
            
+
             update_Size();
             Canvas.SetLeft(_ellipse, point_F.real_x);
             Canvas.SetTop(_ellipse, point_F.real_y);
